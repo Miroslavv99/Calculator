@@ -1,5 +1,5 @@
-const numbers = document.querySelectorAll('.key')
-const keys = document.querySelectorAll('.keys')
+const numberButton = document.querySelectorAll('.key')
+const operatorButton = document.querySelectorAll('.keys')
 const draw = document.getElementById('draw')
 const display = document.getElementById('display')
 
@@ -31,45 +31,45 @@ let num2 = '';
 let operand = '';
 let result = null;
 
-function operate(operator, num1, num2) {
+function calculate(operator, num1, num2) {
     let a = parseFloat(num1)
     let b = parseFloat(num2)
     switch (operator) {
         case '+':
-            return a + b;
+            return add(a, b);
         case '-':
-            return a - b;
+            return subtract(a, b);
         case '*':
-            return a * b;
+            return multiply(a, b)
         case '/':
             if (b === 0) {
                 throw new Error("Error!");
             }
-            return a / b;
+            return divide(a, b);
         default:
             throw new Error("Error!");
     }
 }
 
-numbers.forEach(el => {
-    const value = el.value
+numberButton.forEach(el => {
     el.addEventListener('click', () => {
-        if(['-', '+', '/', '*'].includes(value)) {
-            if(num1 !== '') {
-            operand = value
-            display.textContent += `${value}`
-            }
-        } else {
-            if(operand === '') {
-                num1 += value
-                display.textContent += num1
-            } else {
-                num2 += value
-                display.textContent += num2
-            }
-        }
-
+        const value = el.value
+         if(operand === '') {
+            num1 += value
+            display.textContent = num1
+         } else {
+            num2 += value
+            display.textContent = num1 + ' ' + operand + ' ' + num2
+         }
     })
 })
 
-
+operatorButton.forEach(el => {
+    el.addEventListener('click', () => {
+        const value = el.value
+        if(num1 !== '') {
+            operand = value
+            display.textContent = num1 + ' ' + operand
+        }
+    })
+})
