@@ -1,7 +1,8 @@
 const numberButton = document.querySelectorAll('.key')
-const operatorButton = document.querySelectorAll('.keys')
-const draw = document.getElementById('draw')
+const operatorButton = document.querySelectorAll('.operate')
+const drawButton = document.getElementById('draw')
 const display = document.getElementById('display')
+const reset = document.getElementById('reset')
 
 
 
@@ -75,3 +76,19 @@ operatorButton.forEach(el => {
 })
 
 
+drawButton.addEventListener('click', () => {
+    result = calculate(operand, num1, num2)
+    display.textContent = result
+
+    num1 = result
+    num2 = ''
+    operand = ''
+})
+
+reset.addEventListener('click', () => {
+    display.textContent = ''
+num1 = '';
+num2 = '';
+operand = '';
+result = null;
+})
