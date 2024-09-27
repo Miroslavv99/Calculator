@@ -68,7 +68,20 @@ numberButton.forEach(el => {
          } else {
             num2 += value
             display.textContent = num1 + ' ' + operand + ' ' + num2
+            
          }
+         
+        
+         const displayLength = display.textContent.length
+
+         if (displayLength >= 7) {
+            display.style.fontSize = '30px';  
+        } else if (displayLength >= 5) {
+            display.style.fontSize = '50px';  
+        } else {
+            display.style.fontSize = '60px';  
+        }
+
     })
 })
 
@@ -90,6 +103,7 @@ drawButton.addEventListener('click', () => {
         return
     }
     result = calculate(operand, num1, num2)
+    display.style.fontSize = '60px'
     display.textContent = result
     num1 = result
     num2 = ''
